@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shortcut to URL - Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Shortcut to URL</h1>
+      <p class="subtitle">Configure your keyboard shortcuts</p>
+    </header>
+
+    <section class="shortcuts-section">
+      <div class="section-header">
+        <h2>Shortcuts</h2>
+        <button id="add-shortcut" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Add Shortcut
+        </button>
+      </div>
+
+      <div id="shortcuts-list" class="shortcuts-list">
+        <!-- Shortcuts will be populated here -->
+      </div>
+
+      <div id="empty-state" class="empty-state" style="display: none;">
+        <p>No shortcuts configured yet.</p>
+        <p class="hint">Click "Add Shortcut" to create your first one.</p>
+      </div>
+    </section>
+
+    <section class="help-section">
+      <h2>How to use</h2>
+      <ol>
+        <li>Press <kbd>Cmd</kbd> + <kbd>.</kbd> (Mac) or <kbd>Ctrl</kbd> + <kbd>.</kbd> (Windows/Linux) to open the popup</li>
+        <li>Press the configured key to navigate to the URL</li>
+        <li>You can also click on a shortcut in the popup</li>
+      </ol>
+    </section>
+
+    <section class="settings-section">
+      <h2>Appearance</h2>
+      <div class="setting-item">
+        <div class="setting-info">
+          <span class="setting-label">Theme</span>
+          <span class="setting-description">Choose light or dark mode</span>
+        </div>
+        <div class="theme-toggle">
+          <button id="theme-light" class="theme-btn" data-theme="light">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            Light
+          </button>
+          <button id="theme-dark" class="theme-btn" data-theme="dark">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            Dark
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Add/Edit Modal -->
+  <div id="modal" class="modal" style="display: none;">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <h3 id="modal-title">Add Shortcut</h3>
+      <form id="shortcut-form">
+        <div class="form-group">
+          <label for="shortcut-key">Key</label>
+          <input type="text" id="shortcut-key" maxlength="1" placeholder="e.g., g" required>
+          <span class="form-hint">Single letter or number</span>
+        </div>
+        <div class="form-group">
+          <label for="shortcut-name">Name</label>
+          <input type="text" id="shortcut-name" placeholder="e.g., Gmail" required>
+        </div>
+        <div class="form-group">
+          <label for="shortcut-url">URL</label>
+          <input type="text" id="shortcut-url" placeholder="e.g., gmail.com" required>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="cancel-btn" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
