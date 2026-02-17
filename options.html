@@ -10,7 +10,7 @@
   <div class="container">
     <header>
       <h1>Shortcut to URL</h1>
-      <p class="subtitle">Configure your keyboard shortcuts</p>
+      <p class="subtitle">Configure your keyboard shortcuts and redirect rules</p>
     </header>
 
     <section class="shortcuts-section">
@@ -35,12 +35,42 @@
       </div>
     </section>
 
+    <section class="redirects-section">
+      <div class="section-header">
+        <h2>Redirect Rules</h2>
+        <button id="add-redirect" class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Add Rule
+        </button>
+      </div>
+
+      <div id="redirects-list" class="redirects-list">
+        <!-- Redirect rules will be populated here -->
+      </div>
+
+      <div id="redirects-empty-state" class="empty-state" style="display: none;">
+        <p>No redirect rules configured yet.</p>
+        <p class="hint">Click "Add Rule" to automatically redirect URLs.</p>
+      </div>
+    </section>
+
     <section class="help-section">
       <h2>How to use</h2>
+      <h3 class="help-subtitle">Shortcuts</h3>
       <ol>
         <li>Press <kbd>Cmd</kbd> + <kbd>.</kbd> (Mac) or <kbd>Ctrl</kbd> + <kbd>.</kbd> (Windows/Linux) to open the popup</li>
         <li>Press the configured key to navigate to the URL</li>
         <li>You can also click on a shortcut in the popup</li>
+      </ol>
+      <h3 class="help-subtitle">Redirect Rules</h3>
+      <ol>
+        <li>Add a rule with a URL pattern and a destination URL</li>
+        <li>When you visit a URL that matches the pattern, you'll be automatically redirected</li>
+        <li>Use <strong>Contains</strong> for simple text matching, <strong>Wildcard</strong> for glob patterns (<code>*</code>), or <strong>Regex</strong> for advanced patterns</li>
+        <li>Toggle rules on/off without deleting them</li>
       </ol>
     </section>
 
@@ -98,6 +128,42 @@
         </div>
         <div class="form-actions">
           <button type="button" id="cancel-btn" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add/Edit Redirect Rule Modal -->
+  <div id="redirect-modal" class="modal" style="display: none;">
+    <div class="modal-backdrop redirect-modal-backdrop"></div>
+    <div class="modal-content">
+      <h3 id="redirect-modal-title">Add Redirect Rule</h3>
+      <form id="redirect-form">
+        <div class="form-group">
+          <label for="redirect-name">Name</label>
+          <input type="text" id="redirect-name" placeholder="e.g., AWS SSO Re-auth" required>
+        </div>
+        <div class="form-group">
+          <label for="redirect-match-type">Match Type</label>
+          <select id="redirect-match-type" class="form-select">
+            <option value="contains">Contains</option>
+            <option value="wildcard">Wildcard</option>
+            <option value="regex">Regex</option>
+          </select>
+          <span class="form-hint" id="match-type-hint">URL must contain this text</span>
+        </div>
+        <div class="form-group">
+          <label for="redirect-pattern">URL Pattern</label>
+          <input type="text" id="redirect-pattern" placeholder="e.g., signin.aws.amazon.com" required>
+        </div>
+        <div class="form-group">
+          <label for="redirect-url">Redirect To</label>
+          <input type="text" id="redirect-url" placeholder="e.g., https://example.com/sso" required>
+        </div>
+        <div id="redirect-error" class="form-error" style="display: none;"></div>
+        <div class="form-actions">
+          <button type="button" id="redirect-cancel-btn" class="btn-secondary">Cancel</button>
           <button type="submit" class="btn-primary">Save</button>
         </div>
       </form>

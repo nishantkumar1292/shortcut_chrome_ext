@@ -138,10 +138,34 @@ body {
 
 .footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 16px;
   padding-top: 12px;
   border-top: 1px solid var(--border-color);
+}
+
+/* Redirect Status */
+.redirect-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.redirect-status:hover {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.redirect-status svg {
+  color: #4caf50;
+  flex-shrink: 0;
 }
 
 .settings-btn {

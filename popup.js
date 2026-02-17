@@ -6,6 +6,7 @@ async function init() {
   renderShortcuts(shortcuts);
   setupKeyboardListener(shortcuts);
   setupSettingsButton();
+  await renderRedirectStatus();
 }
 
 async function applyTheme() {
@@ -94,6 +95,39 @@ function openOptions() {
   chrome.runtime.openOptionsPage();
   window.close();
 }
+
+// ---- Redirect Status ----
+
+async function renderRedirectStatus() {
+  const statusEl = document.getElementById('redirect-status');
+  const textEl = document.getElementById('redirect-status-text');
+
+  const rules = await new Promise((resolve) => {
+    chrome.storage.sync.get({ redirectRules: [] }, (result) => {
+      resolve(result.redirectRules);
+    });
+  });
+
+  const activeCount = rules.filter((r) => r.enabled).length;
+
+  if (rules.length === 0) {
+    statusEl.style.display = 'none';
+    return;
+  }
+
+  if (activeCount === 0) {
+    textEl.textContent = `${rules.length} redirect rule${rules.length === 1 ? '' : 's'} (all paused)`;
+  } else {
+    textEl.textContent = `${activeCount} redirect rule${activeCount === 1 ? '' : 's'} active`;
+  }
+
+  statusEl.style.display = 'flex';
+
+  // Clicking the status opens the options page
+  statusEl.addEventListener('click', openOptions);
+}
+
+// ---- Utilities ----
 
 function escapeHtml(text) {
   const div = document.createElement('div');

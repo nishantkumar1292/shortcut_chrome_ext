@@ -71,6 +71,7 @@ header .subtitle {
 }
 
 .shortcuts-section,
+.redirects-section,
 .settings-section {
   background: var(--bg-secondary);
   border-radius: 12px;
@@ -219,7 +220,8 @@ header .subtitle {
   color: var(--text-primary);
 }
 
-.btn-icon.delete-btn:hover {
+.btn-icon.delete-btn:hover,
+.btn-icon.redirect-delete-btn:hover {
   background: #ff4444;
   color: #fff;
 }
@@ -394,4 +396,213 @@ header .subtitle {
   background: var(--bg-tertiary);
   border-color: #5c5cff;
   color: var(--text-primary);
+}
+
+/* ---- Redirect Rules Section ---- */
+
+.redirects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.redirect-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  gap: 12px;
+  transition: opacity 0.2s ease;
+}
+
+.redirect-item.disabled {
+  opacity: 0.5;
+}
+
+.redirect-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+}
+
+.redirect-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4caf50;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.redirect-item.disabled .redirect-status-dot {
+  background: var(--text-muted);
+}
+
+.redirect-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.redirect-details .name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.redirect-details .match-info {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.redirect-details .match-info .match-type-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  background: var(--bg-hover);
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-subtle);
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.redirect-details .redirect-target {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.redirect-details .redirect-target .arrow {
+  color: #5c5cff;
+  margin-right: 4px;
+}
+
+.redirect-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--btn-secondary-bg);
+  border-radius: 20px;
+  transition: background 0.2s ease;
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background: #4caf50;
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(16px);
+}
+
+/* Select Dropdown */
+.form-select {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #5c5cff;
+}
+
+/* Form Error */
+.form-error {
+  padding: 10px 12px;
+  background: rgba(255, 68, 68, 0.1);
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  border-radius: 6px;
+  color: #ff4444;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* Help Section Updates */
+.help-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.help-section h2 + .help-subtitle {
+  margin-top: 0;
+}
+
+.help-section code {
+  padding: 2px 6px;
+  background: var(--btn-secondary-bg);
+  border-radius: 4px;
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.help-section ol + .help-subtitle {
+  margin-top: 20px;
 }
