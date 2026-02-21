@@ -1,3 +1,8 @@
 .DS_Store
 *.zip
 favicon_io/
+
+# Dev tooling (not part of the extension package)
+node_modules/
+package.json
+package-lock.json
