@@ -15,6 +15,35 @@ async function init() {
   setupEventListeners();
   setupRedirectEventListeners();
   setupThemeToggle();
+  await renderShortcutBinding();
+}
+
+// ============================================================
+// Global popup hotkey (the browser-level keyboard shortcut)
+// ============================================================
+
+async function renderShortcutBinding() {
+  const valueEl = document.getElementById('shortcut-binding-value');
+  const warningEl = document.getElementById('shortcut-warning');
+  const changeBtn = document.getElementById('change-shortcut-btn');
+  if (!valueEl) return;
+
+  changeBtn.addEventListener('click', openShortcutsPage);
+
+  const shortcut = await getActionShortcut();
+
+  if (shortcut) {
+    valueEl.innerHTML = `<kbd>${escapeHtml(shortcut)}</kbd>`;
+  } else {
+    valueEl.textContent = 'Not set';
+  }
+
+  const issue = getShortcutIssue(shortcut);
+  if (issue) {
+    warningEl.classList.toggle('error', issue.level === 'error');
+    warningEl.querySelector('.warning-text').textContent = issue.message;
+    warningEl.style.display = 'flex';
+  }
 }
 
 // ============================================================

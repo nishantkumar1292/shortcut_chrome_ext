@@ -61,6 +61,46 @@ body {
   color: var(--text-muted);
 }
 
+/* Global shortcut warning banner */
+.shortcut-warning {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  background: rgba(255, 193, 7, 0.12);
+  border: 1px solid rgba(255, 193, 7, 0.4);
+  border-radius: 8px;
+}
+
+.shortcut-warning.error {
+  background: rgba(244, 67, 54, 0.12);
+  border-color: rgba(244, 67, 54, 0.4);
+}
+
+.shortcut-warning .warning-text {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.shortcut-warning .warning-btn {
+  align-self: flex-start;
+  padding: 6px 12px;
+  background: #5c5cff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.shortcut-warning .warning-btn:hover {
+  background: #4a4aee;
+}
+
 .shortcuts-list {
   display: flex;
   flex-direction: column;

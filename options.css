@@ -91,6 +91,68 @@ header .subtitle {
   font-weight: 600;
 }
 
+/* Popup hotkey section */
+.hotkey-section {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.shortcut-binding {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.shortcut-binding-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shortcut-binding-value {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.shortcut-binding-value kbd {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--bg-key);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.shortcut-binding-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Global shortcut warning banner */
+.shortcut-warning {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.35);
+  border-radius: 8px;
+}
+
+.shortcut-warning.error {
+  background: rgba(255, 68, 68, 0.1);
+  border-color: rgba(255, 68, 68, 0.35);
+}
+
+.shortcut-warning .warning-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-subtle);
+}
+
 .shortcuts-list {
   display: flex;
   flex-direction: column;

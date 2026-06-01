@@ -13,6 +13,22 @@
       <p class="subtitle">Configure your keyboard shortcuts and redirect rules</p>
     </header>
 
+    <section class="hotkey-section">
+      <div class="section-header">
+        <h2>Popup Hotkey</h2>
+      </div>
+      <div id="shortcut-binding" class="shortcut-binding">
+        <div class="shortcut-binding-info">
+          <span id="shortcut-binding-value" class="shortcut-binding-value">Loading…</span>
+          <span class="shortcut-binding-desc">Press this anywhere in the browser to open the popup.</span>
+        </div>
+        <button id="change-shortcut-btn" class="btn-secondary">Change</button>
+      </div>
+      <div id="shortcut-warning" class="shortcut-warning" style="display: none;">
+        <p class="warning-text"></p>
+      </div>
+    </section>
+
     <section class="shortcuts-section">
       <div class="section-header">
         <h2>Shortcuts</h2>
@@ -61,7 +77,7 @@
       <h2>How to use</h2>
       <h3 class="help-subtitle">Shortcuts</h3>
       <ol>
-        <li>Press <kbd>Cmd</kbd> + <kbd>.</kbd> (Mac) or <kbd>Ctrl</kbd> + <kbd>.</kbd> (Windows/Linux) to open the popup</li>
+        <li>Press your popup hotkey (default <kbd>Cmd</kbd> + <kbd>.</kbd> on Mac, <kbd>Ctrl</kbd> + <kbd>.</kbd> on Windows/Linux) to open the popup. View or change it in the <strong>Shortcuts</strong> section above.</li>
         <li>Press the configured key to navigate to the URL</li>
         <li>You can also click on a shortcut in the popup</li>
       </ol>
@@ -170,6 +186,7 @@
     </div>
   </div>
 
+  <script src="shortcut-status.js"></script>
   <script src="options.js"></script>
 </body>
 </html>
