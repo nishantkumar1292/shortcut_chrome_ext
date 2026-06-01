@@ -6,7 +6,31 @@ async function init() {
   renderShortcuts(shortcuts);
   setupKeyboardListener(shortcuts);
   setupSettingsButton();
+  await renderShortcutStatus();
   await renderRedirectStatus();
+}
+
+// ---- Global shortcut status ----
+
+async function renderShortcutStatus() {
+  const warningEl = document.getElementById('shortcut-warning');
+  if (!warningEl) return;
+
+  const shortcut = await getActionShortcut();
+  const issue = getShortcutIssue(shortcut);
+  if (!issue) return;
+
+  warningEl.classList.toggle('error', issue.level === 'error');
+  warningEl.querySelector('.warning-text').textContent = issue.message;
+
+  const btn = document.getElementById('open-shortcuts');
+  btn.textContent = issue.action;
+  btn.addEventListener('click', () => {
+    openShortcutsPage();
+    window.close();
+  });
+
+  warningEl.style.display = 'flex';
 }
 
 async function applyTheme() {
