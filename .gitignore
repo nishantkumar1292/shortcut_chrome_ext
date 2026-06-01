@@ -2,6 +2,10 @@
 *.zip
 favicon_io/
 
+# Chrome Web Store API credentials — never commit
+.env
+.env.*
+
 # Dev tooling (not part of the extension package)
 node_modules/
 package.json
